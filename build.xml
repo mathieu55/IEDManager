@@ -118,7 +118,7 @@
   <property name="module.jdk.bin.iedmanager" value="${project.jdk.bin}"/>
   <property name="module.jdk.classpath.iedmanager" value="${project.jdk.classpath}"/>
   
-  <property name="compiler.args.iedmanager" value="-encoding UTF-8 -source 1.5 -target 1.5 ${compiler.args}"/>
+  <property name="compiler.args.iedmanager" value="-encoding UTF-8 -source 8 -target 1.5 ${compiler.args}"/>
   
   <property name="iedmanager.output.dir" value="${module.iedmanager.basedir}/IEDManager/target/classes"/>
   <property name="iedmanager.testoutput.dir" value="${module.iedmanager.basedir}/IEDManager/target/test-classes"/>
@@ -198,7 +198,7 @@
   <property name="module.jdk.bin.wsiedmanager" value="${project.jdk.bin}"/>
   <property name="module.jdk.classpath.wsiedmanager" value="${project.jdk.classpath}"/>
   
-  <property name="compiler.args.wsiedmanager" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  <property name="compiler.args.wsiedmanager" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
   <property name="wsiedmanager.output.dir" value="${module.wsiedmanager.basedir}/out/production/wsIEDManager"/>
   <property name="wsiedmanager.testoutput.dir" value="${module.wsiedmanager.basedir}/out/test/wsIEDManager"/>
@@ -260,7 +260,7 @@
   <property name="module.jdk.bin.iedmanagertest" value="${project.jdk.bin}"/>
   <property name="module.jdk.classpath.iedmanagertest" value="${project.jdk.classpath}"/>
   
-  <property name="compiler.args.iedmanagertest" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  <property name="compiler.args.iedmanagertest" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
   <property name="iedmanagertest.output.dir" value="${module.iedmanagertest.basedir}/out/production/IEDManagerTest"/>
   <property name="iedmanagertest.testoutput.dir" value="${module.iedmanagertest.basedir}/out/test/IEDManagerTest"/>
@@ -379,5 +379,4 @@
   </target>
   
   <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
-
 </project>

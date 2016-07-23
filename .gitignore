@@ -1,2 +1,3 @@
 out/
-__artifacts_temp
+__artifacts_temp/
+IEDManager/target/
