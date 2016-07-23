@@ -7,42 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79b12bd5-d3ee-4afb-8f8b-7fa734330d1c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/mathieu.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManager/IEDManager.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMExporter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMImporter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDFile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDImportHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManager/src/IED/model/generic/BIMData.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManagerTest/IEDManagerTest.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManagerTest/test/IED/test/InterfaceBIM.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/IEDManagerTest/test/IED/test/TestAll.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/IEDManager.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/IED/IO/generic/IEDFile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/IED/model/generic/BIMData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/app.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/artifacts/IEDManager/IEDManager.jar" afterPath="$PROJECT_DIR$/artifacts/IEDManager/IEDManager.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsIEDManager.iml" afterPath="$PROJECT_DIR$/wsIEDManager.iml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/BIMMaterialReader.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMMaterialReader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/BIMMaterialWriter.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMMaterialWriter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/BIMObjectReader.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMObjectReader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/BIMObjectTypeReader.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMObjectTypeReader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/BIMObjectTypeWriter.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMObjectTypeWriter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/BIMObjectWriter.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMObjectWriter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/generic/IEDReader.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDReader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/IO/generic/IEDWriter.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDWriter.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/model/BIMMaterial.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/model/BIM/BIMMaterial.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/model/BIMObject.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/model/BIM/BIMObject.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/model/BIMObjectType.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/model/BIM/BIMObjectType.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/IED/model/generic/BIMFactory.java" afterPath="$PROJECT_DIR$/IEDManager/src/IED/model/generic/BIMFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IEDManager/IEDManager.iml" afterPath="$PROJECT_DIR$/IEDManager/IEDManager.iml" />
     </list>
     <ignored path="wsIEDManager.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path=".idea/dataSources.local.xml" />
+    <ignored path="$PROJECT_DIR$/IEDManager/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,130 +39,7 @@
     <favorites_list name="wsIEDManager" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="BIMExporter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMExporter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1888#1889#0" expanded="false" />
-                <element signature="e#1933#1934#0" expanded="false" />
-                <element signature="e#1981#1982#0" expanded="false" />
-                <element signature="e#2024#2025#0" expanded="false" />
-                <element signature="e#2076#2077#0" expanded="false" />
-                <element signature="e#2123#2124#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InterfaceBIM.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IEDManagerTest/test/IED/test/InterfaceBIM.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="99" column="1" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IEDWriter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestAll.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IEDManagerTest/test/IED/test/TestAll.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BIMMaterial.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/model/BIM/BIMMaterial.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#842#843#0" expanded="false" />
-                <element signature="e#867#868#0" expanded="false" />
-                <element signature="e#905#906#0" expanded="false" />
-                <element signature="e#933#934#0" expanded="false" />
-                <element signature="e#968#969#0" expanded="false" />
-                <element signature="e#995#996#0" expanded="false" />
-                <element signature="e#1039#1040#0" expanded="false" />
-                <element signature="e#1071#1072#0" expanded="false" />
-                <element signature="e#1107#1108#0" expanded="false" />
-                <element signature="e#1135#1136#0" expanded="false" />
-                <element signature="e#1181#1182#0" expanded="false" />
-                <element signature="e#1215#1216#0" expanded="false" />
-                <element signature="e#1250#1251#0" expanded="false" />
-                <element signature="e#1277#1278#0" expanded="false" />
-                <element signature="e#1321#1322#0" expanded="false" />
-                <element signature="e#1353#1354#0" expanded="false" />
-                <element signature="e#1388#1389#0" expanded="false" />
-                <element signature="e#1422#1423#0" expanded="false" />
-                <element signature="e#1468#1469#0" expanded="false" />
-                <element signature="e#1504#1505#0" expanded="false" />
-                <element signature="e#1745#1746#0" expanded="false" />
-                <element signature="e#1775#1776#0" expanded="false" />
-                <element signature="e#1905#1906#0" expanded="false" />
-                <element signature="e#1953#1954#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BIMObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/model/BIM/BIMObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#348#349#0" expanded="false" />
-                <element signature="e#373#374#0" expanded="false" />
-                <element signature="e#609#610#0" expanded="false" />
-                <element signature="e#639#640#0" expanded="false" />
-                <element signature="e#762#763#0" expanded="false" />
-                <element signature="e#808#809#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BIMObjectType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/model/BIM/BIMObjectType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#335#336#0" expanded="false" />
-                <element signature="e#360#361#0" expanded="false" />
-                <element signature="e#604#605#0" expanded="false" />
-                <element signature="e#634#635#0" expanded="false" />
-                <element signature="e#769#770#0" expanded="false" />
-                <element signature="e#819#820#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -206,10 +59,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/model/IED/BIMObject.java" />
-        <option value="$PROJECT_DIR$/src/model/IED/BIMMaterial.java" />
-        <option value="$PROJECT_DIR$/src/IED/IED/BIMObject.java" />
-        <option value="$PROJECT_DIR$/src/IED/controller/BIMMaterialObject.java" />
         <option value="$PROJECT_DIR$/src/IED/controller/BIMMaterialObjectReader.java" />
         <option value="$PROJECT_DIR$/src/IED/controller/BIMObjectReader.java" />
         <option value="$PROJECT_DIR$/src/IED/model/BIMFactory.java" />
@@ -255,8 +104,12 @@
         <option value="$PROJECT_DIR$/IEDManager/src/IED/model/BIM/BIMObjectType.java" />
         <option value="$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMExporter.java" />
         <option value="$PROJECT_DIR$/IEDManagerTest/test/IED/test/TestAll.java" />
-        <option value="$PROJECT_DIR$/IEDManagerTest/test/IED/test/InterfaceBIM.java" />
         <option value="$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDFile.java" />
+        <option value="$PROJECT_DIR$/IEDManager/pom.xml" />
+        <option value="$PROJECT_DIR$/IEDManagerTest/test/IED/test/InterfaceBIM.java" />
+        <option value="$PROJECT_DIR$/IEDManager/ant.xml" />
+        <option value="$PROJECT_DIR$/build.xml" />
+        <option value="$PROJECT_DIR$/ExportDLL" />
       </list>
     </option>
   </component>
@@ -265,6 +118,16 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -313,8 +176,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -343,76 +204,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="IEDManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wsIEDManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wsIEDManager" />
+              <option name="myItemId" value="artifacts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="IEDManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IED" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wsIEDManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wsIEDManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IEDManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IED" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="IO" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/IEDManagerTest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ExportDLL" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="build" />
+    <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -480,6 +301,9 @@
       <option name="PREFERRED_AVD" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="AntRunConfiguration" factoryName="Ant Target">
+      <method />
+    </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -501,6 +325,65 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
       <method />
     </configuration>
     <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
@@ -695,6 +578,12 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="SbtRunConfiguration" factoryName="SBT Task">
+      <setting name="tasks" value="" />
+      <setting name="vmparams" value="-Xms512M -Xmx1024M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -824,6 +713,10 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="createJarAndDll" type="AntRunConfiguration" factoryName="Ant Target">
+      <antsettings antfile="file://$PROJECT_DIR$/ExportDLL" target="createJarAndDLL" />
+      <method />
+    </configuration>
     <configuration default="false" name="Test" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="IEDManagerTest" />
@@ -846,8 +739,9 @@
       <patterns />
       <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.Test" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Ant Target.createJarAndDll" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.Test" />
     </list>
   </component>
   <component name="SbtLocalSettings">
@@ -883,14 +777,15 @@
       <workItem from="1469016820911" duration="8941000" />
       <workItem from="1469130060285" duration="13472000" />
       <workItem from="1469158591376" duration="235000" />
-      <workItem from="1469158848704" duration="3495000" />
+      <workItem from="1469158848704" duration="3626000" />
+      <workItem from="1469275518483" duration="3288000" />
+      <workItem from="1469282721537" duration="1194000" />
+      <workItem from="1469283936353" duration="6456000" />
     </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test - 2016.07.21 at 23h 05m 45s.xml">
-      <configuration name="Test" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="Test - 2016.07.21 at 23h 16m 07s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
@@ -918,9 +813,12 @@
     <history-entry file="Test - 2016.07.22 at 01h 00m 44s.xml">
       <configuration name="Test" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="Test - 2016.07.23 at 11h 57m 15s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82124000" />
+    <option name="totallyTimeSpent" value="93193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -932,8 +830,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -941,15 +839,16 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21215352" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15351813" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15298508" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="1565" y="419" width="74" height="40" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39977476" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -987,51 +886,14 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+    <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <expanded value="true" />
+    </buildFile>
+    <buildFile url="file://$PROJECT_DIR$/ExportDLL">
+      <expanded value="true" />
+    </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMMaterialReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wsIEDManagerTest/src/app.java" />
-    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMMaterialWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="117" selection-start-line="14" selection-start-column="117" selection-end-line="14" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMObjectReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/model/generic/BIMData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1243,7 +1105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="575">
           <caret line="50" column="51" selection-start-line="50" selection-start-column="51" selection-end-line="50" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1327,22 +1188,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMExporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="52" selection-start-line="25" selection-start-column="52" selection-end-line="25" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1888#1889#0" expanded="false" />
-            <element signature="e#1933#1934#0" expanded="false" />
-            <element signature="e#1981#1982#0" expanded="false" />
-            <element signature="e#2024#2025#0" expanded="false" />
-            <element signature="e#2076#2077#0" expanded="false" />
-            <element signature="e#2123#2124#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IEDManagerTest/test/IED/test/TestAll.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1357,22 +1202,85 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
           <caret line="33" column="66" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IEDManager/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IEDManagerTest/test/IED/test/InterfaceBIM.java">
+    <entry file="file://$PROJECT_DIR$/build.xml.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="99" column="1" selection-start-line="99" selection-start-column="1" selection-end-line="99" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IEDManager/ant.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build_Sat_Jul_23_11-25-03_EDT_2016.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="382" column="0" selection-start-line="382" selection-start-column="0" selection-end-line="387" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ExportDLL">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="381" column="0" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/generic/IEDWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        <state relative-caret-position="544">
+          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IEDManagerTest/test/IED/test/InterfaceBIM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="96" column="107" selection-start-line="96" selection-start-column="107" selection-end-line="96" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IEDManager/src/IED/IO/BIM/BIMExporter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -1384,10 +1292,10 @@
         <settings>
           <artifact-editor>
             <show-content>
-              <type id="jpa-descriptors" />
               <type id="library" />
               <type id="artifact" />
               <type id="javaee-facet-resources" />
+              <type id="jpa-descriptors" />
             </show-content>
           </artifact-editor>
           <last-edited>IEDManager</last-edited>
@@ -1395,7 +1303,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1403,7 +1310,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>Detection</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

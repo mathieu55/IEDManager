@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wsiedmanager" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.ane"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Global Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module IEDManager -->
+  
+  <dirname property="module.iedmanager.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.iedmanager" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.iedmanager" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.iedmanager" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.iedmanager" value="-encoding UTF-8 -source 1.5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="iedmanager.output.dir" value="${module.iedmanager.basedir}/IEDManager/target/classes"/>
+  <property name="iedmanager.testoutput.dir" value="${module.iedmanager.basedir}/IEDManager/target/test-classes"/>
+  
+  <path id="iedmanager.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="iedmanager.module.production.classpath">
+    <path refid="${module.jdk.classpath.iedmanager}"/>
+  </path>
+  
+  <path id="iedmanager.runtime.production.module.classpath">
+    <pathelement location="${iedmanager.output.dir}"/>
+  </path>
+  
+  <path id="iedmanager.module.classpath">
+    <path refid="${module.jdk.classpath.iedmanager}"/>
+    <pathelement location="${iedmanager.output.dir}"/>
+  </path>
+  
+  <path id="iedmanager.runtime.module.classpath">
+    <pathelement location="${iedmanager.testoutput.dir}"/>
+    <pathelement location="${iedmanager.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.iedmanager">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.iedmanager">
+    <patternset refid="excluded.from.module.iedmanager"/>
+  </patternset>
+  
+  <path id="iedmanager.module.sourcepath">
+    <dirset dir="${module.iedmanager.basedir}/IEDManager">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.iedmanager" depends="compile.module.iedmanager.production,compile.module.iedmanager.tests" description="Compile module IEDManager"/>
+  
+  <target name="compile.module.iedmanager.production" depends="register.custom.compilers" description="Compile module IEDManager; production classes">
+    <mkdir dir="${iedmanager.output.dir}"/>
+    <javac2 destdir="${iedmanager.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.iedmanager}/javac">
+      <compilerarg line="${compiler.args.iedmanager}"/>
+      <bootclasspath refid="iedmanager.module.bootclasspath"/>
+      <classpath refid="iedmanager.module.production.classpath"/>
+      <src refid="iedmanager.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.iedmanager"/>
+    </javac2>
+    
+    <copy todir="${iedmanager.output.dir}">
+      <fileset dir="${module.iedmanager.basedir}/IEDManager/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.iedmanager.tests" depends="register.custom.compilers,compile.module.iedmanager.production" description="compile module IEDManager; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.iedmanager" description="cleanup module">
+    <delete dir="${iedmanager.output.dir}"/>
+    <delete dir="${iedmanager.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module wsIEDManager -->
+  
+  <dirname property="module.wsiedmanager.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.wsiedmanager" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.wsiedmanager" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.wsiedmanager" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.wsiedmanager" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="wsiedmanager.output.dir" value="${module.wsiedmanager.basedir}/out/production/wsIEDManager"/>
+  <property name="wsiedmanager.testoutput.dir" value="${module.wsiedmanager.basedir}/out/test/wsIEDManager"/>
+  
+  <path id="wsiedmanager.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="wsiedmanager.module.production.classpath">
+    <path refid="${module.jdk.classpath.wsiedmanager}"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  <path id="wsiedmanager.runtime.production.module.classpath">
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+    <pathelement location="${wsiedmanager.output.dir}"/>
+  </path>
+  
+  <path id="wsiedmanager.module.classpath">
+    <path refid="${module.jdk.classpath.wsiedmanager}"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+    <pathelement location="${wsiedmanager.output.dir}"/>
+  </path>
+  
+  <path id="wsiedmanager.runtime.module.classpath">
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+    <pathelement location="${wsiedmanager.testoutput.dir}"/>
+    <pathelement location="${wsiedmanager.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.wsiedmanager">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.wsiedmanager">
+    <patternset refid="excluded.from.module.wsiedmanager"/>
+  </patternset>
+  
+  
+  <target name="compile.module.wsiedmanager" depends="compile.module.wsiedmanager.production,compile.module.wsiedmanager.tests" description="Compile module wsIEDManager"/>
+  
+  <target name="compile.module.wsiedmanager.production" depends="register.custom.compilers" description="Compile module wsIEDManager; production classes"/>
+  
+  <target name="compile.module.wsiedmanager.tests" depends="register.custom.compilers,compile.module.wsiedmanager.production" description="compile module wsIEDManager; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.wsiedmanager" description="cleanup module">
+    <delete dir="${wsiedmanager.output.dir}"/>
+    <delete dir="${wsiedmanager.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module IEDManagerTest -->
+  
+  <dirname property="module.iedmanagertest.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.iedmanagertest" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.iedmanagertest" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.iedmanagertest" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.iedmanagertest" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="iedmanagertest.output.dir" value="${module.iedmanagertest.basedir}/out/production/IEDManagerTest"/>
+  <property name="iedmanagertest.testoutput.dir" value="${module.iedmanagertest.basedir}/out/test/IEDManagerTest"/>
+  
+  <path id="iedmanagertest.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="iedmanagertest.module.production.classpath">
+    <path refid="${module.jdk.classpath.iedmanagertest}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+    <pathelement location="${iedmanager.output.dir}"/>
+  </path>
+  
+  <path id="iedmanagertest.runtime.production.module.classpath">
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+    <path refid="iedmanager.runtime.production.module.classpath"/>
+    <pathelement location="${iedmanagertest.output.dir}"/>
+  </path>
+  
+  <path id="iedmanagertest.module.classpath">
+    <path refid="${module.jdk.classpath.iedmanagertest}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+    <pathelement location="${iedmanager.testoutput.dir}"/>
+    <pathelement location="${iedmanager.output.dir}"/>
+    <pathelement location="${iedmanagertest.output.dir}"/>
+  </path>
+  
+  <path id="iedmanagertest.runtime.module.classpath">
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+    <path refid="iedmanager.runtime.module.classpath"/>
+    <pathelement location="${iedmanagertest.testoutput.dir}"/>
+    <pathelement location="${iedmanagertest.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.iedmanagertest">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.iedmanagertest">
+    <patternset refid="excluded.from.module.iedmanagertest"/>
+  </patternset>
+  
+  <path id="iedmanagertest.module.test.sourcepath">
+    <dirset dir="${module.iedmanagertest.basedir}/IEDManagerTest">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.iedmanagertest" depends="compile.module.iedmanagertest.production,compile.module.iedmanagertest.tests" description="Compile module IEDManagerTest"/>
+  
+  <target name="compile.module.iedmanagertest.production" depends="register.custom.compilers,compile.module.iedmanager" description="Compile module IEDManagerTest; production classes"/>
+  
+  <target name="compile.module.iedmanagertest.tests" depends="register.custom.compilers,compile.module.iedmanagertest.production" description="compile module IEDManagerTest; test classes" unless="skip.tests">
+    <mkdir dir="${iedmanagertest.testoutput.dir}"/>
+    <javac2 destdir="${iedmanagertest.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.iedmanagertest}/javac">
+      <compilerarg line="${compiler.args.iedmanagertest}"/>
+      <bootclasspath refid="iedmanagertest.module.bootclasspath"/>
+      <classpath refid="iedmanagertest.module.classpath"/>
+      <src refid="iedmanagertest.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.iedmanagertest"/>
+    </javac2>
+    
+    <copy todir="${iedmanagertest.testoutput.dir}">
+      <fileset dir="${module.iedmanagertest.basedir}/IEDManagerTest/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.iedmanagertest" description="cleanup module">
+    <delete dir="${iedmanagertest.output.dir}"/>
+    <delete dir="${iedmanagertest.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.iedmanager, clean.module.wsiedmanager, clean.module.iedmanagertest" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.iedmanager, compile.module.wsiedmanager, compile.module.iedmanagertest" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.iedmanager" value="${basedir}/artifacts/IEDManager"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.IEDManager.jar" value="${artifacts.temp.dir}/IEDManager.jar"/>
+  </target>
+  
+  <target name="artifact.iedmanager" depends="init.artifacts, compile.module.iedmanager" description="Build &#39;IEDManager&#39; artifact">
+    <property name="artifact.temp.output.iedmanager" value="${artifacts.temp.dir}/IEDManager"/>
+    <mkdir dir="${artifact.temp.output.iedmanager}"/>
+    <jar destfile="${temp.jar.path.IEDManager.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${iedmanager.output.dir}"/>
+      <zipfileset file="${basedir}/META-INF/MANIFEST.MF" prefix="META-INF"/>
+    </jar>
+    <copy file="${temp.jar.path.IEDManager.jar}" tofile="${artifact.temp.output.iedmanager}/IEDManager.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.iedmanager" description="Build all artifacts">
+    <mkdir dir="${artifact.output.iedmanager}"/>
+    <copy todir="${artifact.output.iedmanager}">
+      <fileset dir="${artifact.temp.output.iedmanager}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+
+</project>
