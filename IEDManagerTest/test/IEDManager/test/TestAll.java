@@ -4,7 +4,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-		InterfaceBIM.class
+		InterfaceBIMDefaultExt.class,
+		InterfaceBIMTSVExt.class
 })
 
 public class TestAll

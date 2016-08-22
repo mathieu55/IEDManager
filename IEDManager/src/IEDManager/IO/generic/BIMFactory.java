@@ -1,4 +1,6 @@
-package IEDManager.model.generic;
+package IEDManager.IO.generic;
+
+import IEDManager.model.generic.BIMData;
 
 /**
  * Created by mathieu on 7/12/2016.

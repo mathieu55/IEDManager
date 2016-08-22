@@ -1,18 +1,21 @@
 package IEDManager.IO.BIM;
 
+import IEDManager.IO.ExportOption;
+import IEDManager.IO.generic.IEDFile;
+import IEDManager.IO.generic.IEDWriter;
 import IEDManager.model.BIM.*;
 
 import java.io.*;
 
+
 /**
  * Created by mathieu on 7/19/2016.
  */
-public class BIMExporter implements Closeable
+public class BIMExporter extends IEDFile implements Closeable
 {
-
-    protected BIMMaterialWriter bimMaterialW;
-    protected BIMObjectWriter bimObjectW;
-    protected BIMObjectTypeWriter bimObjectTypeW;
+    protected IEDWriter<BIMMaterial> bimMaterialW;
+    protected IEDWriter<BIMObject>  bimObjectW;
+    protected IEDWriter<BIMObjectType>  bimObjectTypeW;
 
     protected File bimMaterialF;
     protected File bimObjectF;
@@ -23,20 +26,24 @@ public class BIMExporter implements Closeable
         this(File.createTempFile("tmpBM", ".ied"), File.createTempFile("tmpBO", ".ied"), File.createTempFile("tmpBOT", ".ied"));
     }
 
-    public BIMExporter(String materialFilePath,String objectFilePath,String objectTypeFilePath) throws IOException
-    {
-
-    }
-
     public BIMExporter(File bimMaterialFile,File bimObjectFile, File bimObjectTypeFile) throws IOException
     {
         bimMaterialF = bimMaterialFile;
         bimObjectF = bimObjectFile;
         bimObjectTypeF = bimObjectTypeFile;
 
-        bimMaterialW = new BIMMaterialWriter(getBufferedWriter(bimMaterialF));
-        bimObjectW = new BIMObjectWriter(getBufferedWriter(bimObjectF));
-        bimObjectTypeW = new BIMObjectTypeWriter(getBufferedWriter(bimObjectTypeF));
+        bimMaterialW = new IEDWriter<BIMMaterial>(getBufferedWriter(bimMaterialF));
+        bimObjectW = new IEDWriter<BIMObject>(getBufferedWriter(bimObjectF));
+        bimObjectTypeW = new IEDWriter<BIMObjectType>(getBufferedWriter(bimObjectTypeF));
+
+        setExportOptionFromExt(bimMaterialW,bimMaterialFile.getPath());
+        setExportOptionFromExt(bimObjectW,bimObjectF.getPath());
+        setExportOptionFromExt(bimObjectTypeW,bimObjectTypeF.getPath());
+    }
+
+    public BIMExporter(String bimMaterialFilePath,String bimObjectFilePath, String bimObjectTypeFilePath) throws IOException
+    {
+        this(new File(bimMaterialFilePath),new File(bimObjectFilePath),new File(bimObjectTypeFilePath));
     }
 
     protected static File getFile(String path) throws IOException
@@ -107,6 +114,14 @@ public class BIMExporter implements Closeable
         bimMaterialW=null;
         bimObjectW=null;
         bimObjectTypeW=null;
+    }
+
+    public void setExportType(ExportOption exportOption)
+    {
+        super.setExportType(exportOption);
+        this.bimMaterialW.setExportType(exportOption);
+        this.bimObjectTypeW.setExportType(exportOption);
+        this.bimObjectW.setExportType(exportOption);
     }
 
     private static BufferedWriter getBufferedWriter(File IEDFile) throws FileNotFoundException

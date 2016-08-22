@@ -1,5 +1,7 @@
 package IEDManager.IO.BIM;
 
+import IEDManager.IO.ExportOption;
+import IEDManager.IO.generic.IEDFile;
 import IEDManager.IO.generic.IEDImportHandler;
 import IEDManager.IO.generic.IEDReader;
 import IEDManager.model.BIM.BIMMaterial;
@@ -12,11 +14,11 @@ import java.io.*;
 /**
  * Created by mathieu on 7/20/2016.
  */
-public class BIMImporter implements Closeable
+public class BIMImporter extends IEDFile implements Closeable
 {
-    protected BIMMaterialReader bimMaterialR;
-    protected BIMObjectReader bimObjectR;
-    protected BIMObjectTypeReader bimObjectTypeR;
+    protected IEDReader<BIMMaterial> bimMaterialR;
+    protected IEDReader<BIMObject> bimObjectR;
+    protected IEDReader<BIMObjectType> bimObjectTypeR;
 
     protected IEDImportHandler<BIMMaterial> bimMaterialHandler;
     protected IEDImportHandler<BIMObject> bimObjectHandler;
@@ -31,9 +33,9 @@ public class BIMImporter implements Closeable
                        IEDImportHandler<BIMObject> bimObjectHandler,
                        IEDImportHandler<BIMObjectType> bimObjectTypeHandler) throws FileNotFoundException
     {
-        this(getBufferedReader(bimMaterialFilePath),
-             getBufferedReader(bimObjectFilePath),
-             getBufferedReader(bimObjectTypeFilePath),
+        this(new File(bimMaterialFilePath),
+             new File(bimObjectFilePath),
+             new File(bimObjectTypeFilePath),
              bimMaterialHandler,
              bimObjectHandler,
              bimObjectTypeHandler);
@@ -46,29 +48,17 @@ public class BIMImporter implements Closeable
                        IEDImportHandler<BIMObject> bimObjectHandler,
                        IEDImportHandler<BIMObjectType> bimObjectTypeHandler) throws FileNotFoundException
     {
-        this(getBufferedReader(bimMaterialFile),
-                getBufferedReader(bimObjectFile),
-                getBufferedReader(bimObjectTypeFile),
-                bimMaterialHandler,
-                bimObjectHandler,
-                bimObjectTypeHandler);
-    }
-
-
-    public BIMImporter(BufferedReader bimMaterialReader,
-                       BufferedReader bimObjectReader,
-                       BufferedReader bimObjectTypeReader,
-                       IEDImportHandler<BIMMaterial> bimMaterialHandler,
-                       IEDImportHandler<BIMObject> bimObjectHandler,
-                       IEDImportHandler<BIMObjectType> bimObjectTypeHandler)
-    {
-        bimMaterialR=new BIMMaterialReader(bimMaterialReader);
-        bimObjectR=new BIMObjectReader(bimObjectReader);
-        bimObjectTypeR=new BIMObjectTypeReader(bimObjectTypeReader);
+        bimMaterialR=new IEDReader<BIMMaterial>(getBufferedReader(bimMaterialFile), BIMMaterial.getFactory());
+        bimObjectR=new IEDReader<BIMObject>(getBufferedReader(bimObjectFile), BIMObject.getFactory());
+        bimObjectTypeR=new IEDReader<BIMObjectType>(getBufferedReader(bimObjectTypeFile),BIMObjectType.getFactory());
 
         this.bimMaterialHandler = bimMaterialHandler;
         this.bimObjectHandler = bimObjectHandler;
         this.bimObjectTypeHandler = bimObjectTypeHandler;
+
+        setExportOptionFromExt(bimMaterialR,bimMaterialFile.getPath());
+        setExportOptionFromExt(bimObjectR,bimObjectFile.getPath());
+        setExportOptionFromExt(bimObjectTypeR,bimObjectTypeFile.getPath());
     }
 
     public boolean ProcessAll()
@@ -114,6 +104,14 @@ public class BIMImporter implements Closeable
         bimMaterialR=null;
         bimObjectR=null;
         bimObjectTypeR=null;
+    }
+
+    public void setExportType(ExportOption exportOption)
+    {
+        super.setExportType(exportOption);
+        this.bimMaterialR.setExportType(exportOption);
+        this.bimObjectTypeR.setExportType(exportOption);
+        this.bimObjectR.setExportType(exportOption);
     }
 
     private static BufferedReader getBufferedReader(String path) throws FileNotFoundException

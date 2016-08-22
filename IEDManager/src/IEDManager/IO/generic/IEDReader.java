@@ -1,7 +1,6 @@
 package IEDManager.IO.generic;
 
 import IEDManager.model.generic.BIMData;
-import IEDManager.model.generic.BIMFactory;
 
 import java.io.*;
 import java.util.HashMap;
@@ -9,11 +8,12 @@ import java.util.HashMap;
 /**
  * Created by mathieu on 7/12/2016.
  */
-public abstract class IEDReader<T extends BIMData> extends IEDFile implements Closeable{
+public class IEDReader<T extends BIMData> extends IEDFile implements Closeable{
 
     private BufferedReader inFile;
 
     protected BIMFactory<T> factory;
+    protected boolean firstLineReaded = false;
 
     private IEDReader(){}
 
@@ -40,38 +40,47 @@ public abstract class IEDReader<T extends BIMData> extends IEDFile implements Cl
         inFile = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
     }
 
-    protected String readLine() throws IOException
+    protected String readRecord() throws IOException
     {
         StringBuilder strBuilder = new StringBuilder();
 
+
         int charReaded = inFile.read();
 
-        while(charReaded >= 0 && charReaded != lineSeparatorAnsiCode)
+        while(charReaded >= 0 && charReaded != this.exportOption.getRecordSeparatorAnsiCode())
         {
             strBuilder.append((char)charReaded);
-
             charReaded = inFile.read();
         }
+
+        //Skip header if exist
+        if(!firstLineReaded && this.exportOption.isHeaderColumnNeeded())
+        {
+            firstLineReaded=true;
+            return readRecord();
+        }
+
+        firstLineReaded=true;
 
         return strBuilder.toString();
     }
 
     protected String[] readLineField() throws IOException
     {
-        String line = readLine();
-        if(line == null)
+        String rec = readRecord();
+        if(rec == null)
             return null;
         else
         {
-            return line.split(fieldSeparator);
+            return rec.split(this.exportOption.getFieldSeparator());
         }
     }
 
     public T readObject() throws IOException
     {
-        String[] data = readLineField();
+        String[] data = this.exportOption.unescapeAllFields(readLineField());
         T IEDObj = factory.create();
-        if(loadData(IEDObj, data))
+        if(IEDObj.load(data))
             return IEDObj;
         else
             return null;
@@ -101,7 +110,5 @@ public abstract class IEDReader<T extends BIMData> extends IEDFile implements Cl
         if(inFile!=null)inFile.close();
         inFile=null;
     }
-
-    public abstract boolean loadData(T IEDObj, String[] data);
 
 }

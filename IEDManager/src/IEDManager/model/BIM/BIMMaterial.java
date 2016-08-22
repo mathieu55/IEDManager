@@ -1,89 +1,68 @@
 package IEDManager.model.BIM;
 
+import IEDManager.Annotation.SerializableVar;
 import IEDManager.model.generic.BIMData;
-import IEDManager.model.generic.BIMFactory;
+import IEDManager.IO.generic.BIMFactory;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.lang.reflect.Field;
+import java.util.Map;
 
 /**
  * Created by mathieu on 6/18/2016.
  */
 public class BIMMaterial extends BIMData
 {
+    @SerializableVar(Order=1, Name="Material Id")
+    @Getter protected long id;
 
-    private long id;
-    private String name;
-    private double depth;
-    private String unit;
-    private long typeId;
+    @SerializableVar(Order=2, Name="Element Id")
+    @Getter @Setter protected long elemId;
 
-    public BIMMaterial()
-    {
-        this.id = -1;
-        this.name = "";
-        this.depth = 0;
-        this.unit = "";
-        this.typeId = -1;
-    }
+    @SerializableVar(Order=3, Name="Material Name")
+    @Getter @Setter protected String name;
 
-    public BIMMaterial(long id, String name, double depth, String unit,long typeId)
+    @SerializableVar(Order=4, Name="Area")
+    @Getter @Setter protected double area;
+
+    @SerializableVar(Order=5, Name="Volume")
+    @Getter @Setter protected double volume;
+
+    public BIMMaterial(){}
+
+    public BIMMaterial(long id, long elemId, String name, double area, double volume)
     {
         this.id = id;
+        this.elemId = elemId;
         this.name = name;
-        this.depth = depth;
-        this.unit = unit;
-        this.typeId = typeId;
+        this.area = area;
+        this.volume = volume;
     }
 
     //***************************************
-    //     BIMMaterial Data
+    //             load data
     //***************************************
-    public long getId()
+    public boolean load(String[] data)
     {
-        return id;
-    }
+        if(data != null && data.length >= 5)
+        {
+            try
+            {
+                this.id = Long.parseLong(data[0],10);
+                this.elemId = Long.parseLong(data[1],10);
+                this.name = data[2];
+                this.area = Double.parseDouble(data[3]);
+                this.volume = Double.parseDouble(data[4]);;
 
-    public void setId(long id)
-    {
-        this.id = id;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public double getDepth()
-    {
-        return depth;
-    }
-
-    public void setDepth(double depth)
-    {
-        this.depth = depth;
-    }
-
-    public String getUnit()
-    {
-        return unit;
-    }
-
-    public void setUnit(String unit)
-    {
-        this.unit = unit;
-    }
-
-    public long getTypeId()
-    {
-        return this.typeId;
-    }
-
-    public void setTypeId(long typeId)
-    {
-        this.typeId = typeId;
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+        return false;
     }
 
     //***************************************
@@ -96,12 +75,19 @@ public class BIMMaterial extends BIMData
         return factory;
     }
 
-
     private static class BIMMaterialFactory extends BIMFactory<BIMMaterial>
     {
         public BIMMaterial create()
         {
             return new BIMMaterial();
         }
+    }
+
+    private static Map<Integer, Field> serializableMap;
+    public Map<Integer,Field> getMap()
+    {
+        if(serializableMap == null)
+            serializableMap = BIMData.loadMap(this);
+        return serializableMap;
     }
 }
