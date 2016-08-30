@@ -8,6 +8,9 @@ import IEDManager.model.BIM.BIMMaterial;
 import IEDManager.model.BIM.BIMObject;
 import IEDManager.model.BIM.BIMObjectType;
 import IEDManager.model.generic.BIMData;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 import java.io.*;
 
@@ -23,6 +26,10 @@ public class BIMImporter extends IEDFile implements Closeable
     protected IEDImportHandler<BIMMaterial> bimMaterialHandler;
     protected IEDImportHandler<BIMObject> bimObjectHandler;
     protected IEDImportHandler<BIMObjectType> bimObjectTypeHandler;
+
+    protected readOrder[] readers;
+
+    @Getter protected IEDFileType[] sequence;
 
     private BIMImporter(){}
 
@@ -59,15 +66,40 @@ public class BIMImporter extends IEDFile implements Closeable
         setExportOptionFromExt(bimMaterialR,bimMaterialFile.getPath());
         setExportOptionFromExt(bimObjectR,bimObjectFile.getPath());
         setExportOptionFromExt(bimObjectTypeR,bimObjectTypeFile.getPath());
+
+        readers = new readOrder[]
+                {
+                        new readOrder(null,null),
+                        new readOrder(bimMaterialR,bimMaterialHandler),
+                        new readOrder(bimObjectR,bimObjectHandler),
+                        new readOrder(bimObjectTypeR,bimObjectTypeHandler)
+                };
+
+        setSequence(null);
+    }
+
+    public void setSequence(IEDFileType[] sequence)
+    {
+        if(sequence==null)
+            this.sequence = new IEDFileType[]
+                            {
+                                IEDFileType.IEDMaterial,
+                                IEDFileType.IEDObject,
+                                IEDFileType.IEDObjectType
+                            };
+        else
+            this.sequence = sequence;
     }
 
     public boolean ProcessAll()
     {
         boolean success=true;
 
-        success &= processBIMData(bimMaterialR,bimMaterialHandler);
-        success &= processBIMData(bimObjectR,bimObjectHandler);
-        success &= processBIMData(bimObjectTypeR,bimObjectTypeHandler);
+        for (IEDFileType fileType:sequence)
+        {
+            readOrder nextReader = readers[fileType.ordinal()];
+            success &= processBIMData(nextReader.reader,nextReader.handler);
+        }
 
         return success;
     }
@@ -122,5 +154,17 @@ public class BIMImporter extends IEDFile implements Closeable
     private static BufferedReader getBufferedReader(File file) throws FileNotFoundException
     {
         return new BufferedReader(new FileReader(file));
+    }
+
+    private class readOrder
+    {
+        public IEDImportHandler handler;
+        public IEDReader reader;
+
+        public readOrder(IEDReader reader,IEDImportHandler handler)
+        {
+            this.handler = handler;
+            this.reader = reader;
+        }
     }
 }
