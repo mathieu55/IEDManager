@@ -17,7 +17,7 @@ public class BIMMaterial extends BIMData
     @SerializableVar(Order=1, Name="Material Id")
     @Getter protected long id;
 
-    @SerializableVar(Order=2, Name="Element Id")
+    @SerializableVar(Order=2, Name="Object Id")
     @Getter @Setter protected long elemId;
 
     @SerializableVar(Order=3, Name="Material Name")
@@ -29,15 +29,23 @@ public class BIMMaterial extends BIMData
     @SerializableVar(Order=5, Name="Volume")
     @Getter @Setter protected double volume;
 
+    @SerializableVar(Order=6, Name="Ratio Area")
+    @Getter @Setter protected double ratioArea;
+
+    @SerializableVar(Order=7, Name="Ratio Volume")
+    @Getter @Setter protected double ratioVolume;
+
     public BIMMaterial(){}
 
-    public BIMMaterial(long id, long elemId, String name, double area, double volume)
+    public BIMMaterial(long id, long elemId, String name, double area, double volume, double ratioArea, double ratioVolume)
     {
         this.id = id;
         this.elemId = elemId;
         this.name = name;
         this.area = area;
         this.volume = volume;
+        this.ratioArea = ratioArea;
+        this.ratioVolume = ratioVolume;
     }
 
     //***************************************
@@ -45,7 +53,7 @@ public class BIMMaterial extends BIMData
     //***************************************
     public boolean load(String[] data)
     {
-        if(data != null && data.length >= 5)
+        if(data != null && data.length >= 7)
         {
             try
             {
@@ -53,7 +61,9 @@ public class BIMMaterial extends BIMData
                 this.elemId = Long.parseLong(data[1],10);
                 this.name = data[2];
                 this.area = Double.parseDouble(data[3]);
-                this.volume = Double.parseDouble(data[4]);;
+                this.volume = Double.parseDouble(data[4]);
+                this.ratioArea = Double.parseDouble(data[5]);
+                this.ratioVolume = Double.parseDouble(data[6]);
 
                 return true;
             }

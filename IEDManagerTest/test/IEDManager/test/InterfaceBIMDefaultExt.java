@@ -43,9 +43,9 @@ public class InterfaceBIMDefaultExt
     @Test
     public void testModuleInterfaceMaterial() throws IOException
     {
-        BIMMaterial mat1 = new BIMMaterial(1l,11l,"Mat1",1.1,11.11);
-        BIMMaterial mat2 = new BIMMaterial(2l,22l,"Mat2",2.2,22.22);
-        BIMMaterial mat3 = new BIMMaterial(3l,33l,"Mat3",3.3,33.33);
+        BIMMaterial mat1 = new BIMMaterial(1l,11l,"Mat1",1.1,11.11,0.1,0.11);
+        BIMMaterial mat2 = new BIMMaterial(2l,22l,"Mat2",2.2,22.22,0.2,0.22);
+        BIMMaterial mat3 = new BIMMaterial(3l,33l,"Mat3",3.3,33.33,0.3,0.33);
 
 	    final ArrayList<BIMMaterial> lstImp = new ArrayList<BIMMaterial>();
 
