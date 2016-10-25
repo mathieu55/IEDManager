@@ -7,37 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79b12bd5-d3ee-4afb-8f8b-7fa734330d1c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/IEDManager.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/BIM/BIMExporter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/BIM/BIMImporter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/BIM/IEDFileType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/ExportOption.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/ExportOptionManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/generic/BIMFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/generic/IEDFile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/generic/IEDImportHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/generic/IEDReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/IO/generic/IEDWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/annotation/SerializableVar.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/model/BIM/BIMMaterial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/model/BIM/BIMObject.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/model/BIM/BIMObjectType.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/model/generic/BIMData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/model/generic/IEDUnitDimension.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManager/src/IEDManager/model/generic/IEDUnitSystem.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManagerTest/IEDManagerTest.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManagerTest/test/IEDManager/test/InterfaceBIMDefaultExt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManagerTest/test/IEDManager/test/InterfaceBIMTSVExt.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/IEDManagerTest/test/IEDManager/test/TestAll.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/artifacts/IEDManager/CreateDLL.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/artifacts/IEDManager/IEDManager.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/artifacts/IEDManager/IEDManager.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lombok.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wsIEDManager.iml" afterPath="$PROJECT_DIR$/wsIEDManager.iml" />
     </list>
     <ignored path="wsIEDManager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,11 +46,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateDLL.bat" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CreateDLL.bat" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/CreateDLL.bat">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="44">
               <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -105,7 +86,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/IED/IO/BIM/BIMImporter.java" />
         <option value="$PROJECT_DIR$/src/IED/IO/BIM/BIMExporter.java" />
         <option value="$PROJECT_DIR$/src/IED/model/generic/BIMData.java" />
         <option value="$PROJECT_DIR$/wsIEDManagerTest/Test/TestInterfaceBIM.java" />
@@ -156,6 +136,7 @@
         <option value="$PROJECT_DIR$/src/test/java/org/ububiGroup/IEDManager/InterfaceBIMDefaultExt.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/scripts/CreateDLL.bat" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -906,7 +887,7 @@
       <workItem from="1474460506301" duration="782000" />
       <workItem from="1476740360730" duration="8755000" />
       <workItem from="1476806067519" duration="24000" />
-      <workItem from="1477426725634" duration="3676000" />
+      <workItem from="1477426725634" duration="3752000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -944,7 +925,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185117000" />
+    <option name="totallyTimeSpent" value="185193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -957,7 +938,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="2418" height="1308" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -970,7 +951,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16916667" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16916667" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="1565" y="419" width="74" height="40" />
@@ -1024,7 +1005,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Test/IED/Test/IO/BIMMaterialIO.java" />
     <entry file="file://$PROJECT_DIR$/.idea/artifacts/IEDManager.xml" />
     <entry file="file://$PROJECT_DIR$/src/IED/IO/generic/IEDExporter.java" />
     <entry file="file://$PROJECT_DIR$/src/IED/IO/generic/IEDExporterOption.java" />
@@ -1247,6 +1227,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
           <folding />
         </state>
       </provider>
