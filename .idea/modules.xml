@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IEDManager/IEDManager.iml" filepath="$PROJECT_DIR$/IEDManager/IEDManager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/IEDManagerTest/IEDManagerTest.iml" filepath="$PROJECT_DIR$/IEDManagerTest/IEDManagerTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/wsIEDManager.iml" filepath="$PROJECT_DIR$/wsIEDManager.iml" />
     </modules>
   </component>

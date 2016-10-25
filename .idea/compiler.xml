@@ -22,11 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="IEDManager" />
+        <module name="wsIEDManager" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="IEDManager" target="1.8" />
+      <module name="wsIEDManager" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
