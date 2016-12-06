@@ -72,7 +72,7 @@ public class IEDReader<T extends BIMData> extends IEDFile implements Closeable{
             return null;
         else
         {
-            return rec.split(this.exportOption.getFieldSeparator());
+            return rec.split(this.exportOption.getFieldSeparator(),-1);
         }
     }
 

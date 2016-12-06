@@ -35,9 +35,24 @@ public class BIMMaterial extends BIMData
     @SerializableVar(Order=7, Name="Ratio Volume")
     @Getter @Setter protected double ratioVolume;
 
+    @SerializableVar(Order=8, Name="Description")
+    @Getter @Setter protected String description;
+
+    @SerializableVar(Order=9, Name="Manufacturer")
+    @Getter @Setter protected String manufacturer;
+
+    @SerializableVar(Order=10, Name="Mark")
+    @Getter @Setter protected String mark;
+
     public BIMMaterial(){}
 
     public BIMMaterial(long id, long ownerId, String name, double area, double volume, double ratioArea, double ratioVolume)
+    {
+     this(id, ownerId, name, area, volume, ratioArea, ratioVolume,"","","");
+    }
+
+    public BIMMaterial(long id, long ownerId, String name, double area, double volume, double ratioArea,
+                       double ratioVolume, String description, String manufacturer, String mark)
     {
         this.id = id;
         this.ownerId = ownerId;
@@ -46,6 +61,9 @@ public class BIMMaterial extends BIMData
         this.volume = volume;
         this.ratioArea = ratioArea;
         this.ratioVolume = ratioVolume;
+        this.description = description;
+        this.manufacturer = manufacturer;
+        this.mark = mark;
     }
 
     //***************************************
@@ -53,7 +71,7 @@ public class BIMMaterial extends BIMData
     //***************************************
     public boolean load(String[] data)
     {
-        if(data != null && data.length >= 7)
+        if(data != null && data.length >= 10)
         {
             try
             {
@@ -64,7 +82,9 @@ public class BIMMaterial extends BIMData
                 this.volume = Double.parseDouble(data[4]);
                 this.ratioArea = Double.parseDouble(data[5]);
                 this.ratioVolume = Double.parseDouble(data[6]);
-
+                this.description = data[7];
+                this.manufacturer = data[8];
+                this.mark = data[9];
                 return true;
             }
             catch(Exception e)
