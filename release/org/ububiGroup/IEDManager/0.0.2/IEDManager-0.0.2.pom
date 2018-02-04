@@ -38,7 +38,26 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <executions>
+                    <execution>
+                        <id>generateDll</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>scripts/CreateDLL.bat</executable>
+                    <arguments>
+                        <argument>${project.name}-${project.version}</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

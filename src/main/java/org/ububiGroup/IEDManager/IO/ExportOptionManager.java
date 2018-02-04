@@ -25,7 +25,7 @@ public final class ExportOptionManager
 
 	private ExportOptionManager()
 	{
-		ExportOption tmp=new ExportOption("CSV","ZIP")
+		ExportOption tmp=new ExportOption("CSV","zip")
 		{
 			 @Override
 			 public baseExporter getExporter() { return new TSVExporter(); }
@@ -35,7 +35,7 @@ public final class ExportOptionManager
 		 };
 		this.lstExportOption.put(tmp.name,tmp);
 
-		tmp=new ExportOption("IED legacy","ZIP")
+		tmp=new ExportOption("IED legacy","ied1")
 		{
 			@Override
 			public baseExporter getExporter() { return new IED1Exporter(); }
@@ -45,7 +45,7 @@ public final class ExportOptionManager
 		};
 		this.lstExportOption.put(tmp.name,tmp);
 
-		tmp=new ExportOption("IED legacy","IED")
+		tmp=new ExportOption("IED","ied")
 		{
 			@Override
 			public baseExporter getExporter() { return new IEDExporter(); }
