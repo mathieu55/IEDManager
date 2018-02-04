@@ -2,7 +2,7 @@ package org.ububiGroup.IEDManager.model.BIM;
 
 import org.ububiGroup.IEDManager.Annotation.SerializableVar;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
-import org.ububiGroup.IEDManager.IO.generic.BIMFactory;
+import org.ububiGroup.IEDManager.IO.generic.BIMDataFactory;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -44,7 +44,13 @@ public class BIMMaterial extends BIMData
     @SerializableVar(Order=10, Name="Mark")
     @Getter @Setter protected String mark;
 
-    public BIMMaterial(){}
+    @SerializableVar(Order=11, Name="Function")
+    @Getter @Setter protected String function;
+
+    public BIMMaterial()
+    {
+        this(-1,-1,"",0,0,0,0);
+    }
 
     public BIMMaterial(long id, long ownerId, String name, double area, double volume, double ratioArea, double ratioVolume)
     {
@@ -53,6 +59,12 @@ public class BIMMaterial extends BIMData
 
     public BIMMaterial(long id, long ownerId, String name, double area, double volume, double ratioArea,
                        double ratioVolume, String description, String manufacturer, String mark)
+    {
+        this(id, ownerId, name, area, volume, ratioArea, ratioVolume, description, manufacturer, mark,"");
+    }
+
+    public BIMMaterial(long id, long ownerId, String name, double area, double volume, double ratioArea,
+                       double ratioVolume, String description, String manufacturer, String mark, String function)
     {
         this.id = id;
         this.ownerId = ownerId;
@@ -64,6 +76,7 @@ public class BIMMaterial extends BIMData
         this.description = description;
         this.manufacturer = manufacturer;
         this.mark = mark;
+        this.function = function;
     }
 
     //***************************************
@@ -85,6 +98,7 @@ public class BIMMaterial extends BIMData
                 this.description = data[7];
                 this.manufacturer = data[8];
                 this.mark = data[9];
+                this.function = data[10];
                 return true;
             }
             catch(Exception e)
@@ -98,14 +112,14 @@ public class BIMMaterial extends BIMData
     //***************************************
     //     BIMMaterial Factory
     //***************************************
-    protected static BIMFactory factory = new BIMMaterialFactory();
+    protected static BIMDataFactory factory = new BIMMaterialFactory();
 
-    public static BIMFactory getFactory()
+    public static BIMDataFactory getFactory()
     {
         return factory;
     }
 
-    private static class BIMMaterialFactory extends BIMFactory<BIMMaterial>
+    private static class BIMMaterialFactory extends BIMDataFactory<BIMMaterial>
     {
         public BIMMaterial create()
         {

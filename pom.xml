@@ -7,15 +7,15 @@
     <artifactId>IEDManager</artifactId>
     <groupId>org.ububiGroup</groupId>
     <packaging>jar</packaging>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>IEDManager</name>
     <url></url>
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.0.1</version>
             <scope>test</scope>
         </dependency>
 

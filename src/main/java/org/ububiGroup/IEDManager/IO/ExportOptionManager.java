@@ -1,6 +1,9 @@
 package org.ububiGroup.IEDManager.IO;
 
 import lombok.Getter;
+import org.ububiGroup.IEDManager.IO.BIM.*;
+import org.ububiGroup.IEDManager.IO.generic.baseExporter;
+import org.ububiGroup.IEDManager.IO.generic.baseImporter;
 
 import java.util.*;
 
@@ -17,12 +20,42 @@ public final class ExportOptionManager
 		return expOptManager;
 	}
 
-	private HashMap<String,ExportOption> lstExportOption =new HashMap<String,ExportOption>();
-	@Getter private ExportOption defaultExportOption;
+	private HashMap<String,ExportOption> lstExportOption =new HashMap<>();
+	@Getter private ExportOption defaultOption;
 
 	private ExportOptionManager()
 	{
-		registerDefaultExportOption();
+		ExportOption tmp=new ExportOption("CSV","ZIP")
+		{
+			 @Override
+			 public baseExporter getExporter() { return new TSVExporter(); }
+
+			 @Override
+			 public baseImporter getImporter() { return new TSVImporter(); }
+		 };
+		this.lstExportOption.put(tmp.name,tmp);
+
+		tmp=new ExportOption("IED legacy","ZIP")
+		{
+			@Override
+			public baseExporter getExporter() { return new IED1Exporter(); }
+
+			@Override
+			public baseImporter getImporter() { return new IED1Importer(); }
+		};
+		this.lstExportOption.put(tmp.name,tmp);
+
+		tmp=new ExportOption("IED legacy","IED")
+		{
+			@Override
+			public baseExporter getExporter() { return new IEDExporter(); }
+
+			@Override
+			public baseImporter getImporter() { return new IEDImporter(); }
+		};
+		this.lstExportOption.put(tmp.name,tmp);
+
+		defaultOption=tmp;
 	}
 
 	public ExportOption[] getExportOptionList()
@@ -32,94 +65,17 @@ public final class ExportOptionManager
 		return (ExportOption[]) lstExportOption.values().toArray(lst);
 	}
 
-	public ExportOption getExportOptionFromName(String name)
+	public abstract class ExportOption
 	{
-		return lstExportOption.get(name);
-	}
-
-	public boolean registerExportOption(ExportOption eo)
-	{
-		if(getExportOptionFromName(eo.getName())==null)
+		@Getter private String name;
+		@Getter private String extension;
+		protected ExportOption(String name, String extension)
 		{
-			lstExportOption.put(eo.getName(),eo);
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	public ExportOption[] getAllExportOptionFromExtension(String extension)
-	{
-		return getAllExportOptionFromExtension(extension,false);
-	}
-
-	public ExportOption[] getAllExportOptionFromExtension(String extension, Boolean defaultWhenNotFound)
-	{
-		String extensionSearched = extension.toLowerCase();
-		List<ExportOption> lst = new ArrayList<ExportOption>();
-
-		for(ExportOption eo : this.lstExportOption.values())
-		{
-			if (eo.getExtension().compareTo(extensionSearched) == 0)
-				lst.add(eo);
+			this.name=name;
+			this.extension=extension;
 		}
 
-		if(!defaultWhenNotFound || lst.size()>0)
-		{
-			ExportOption[] tabEO = new ExportOption[lst.size()];
-			return lst.toArray(tabEO);
-		}
-		else
-		{
-			return new ExportOption[]{defaultExportOption};
-		}
+		public abstract baseExporter getExporter();
+		public abstract baseImporter getImporter();
 	}
-
-	public ExportOption getFirstExportOptionFromExtension(String extension, Boolean defaultWhenNotFound)
-	{
-		String extensionSearched = extension.toLowerCase();
-		List<ExportOption> lst = new ArrayList<ExportOption>();
-
-		for(ExportOption eo : this.lstExportOption.values())
-		{
-			if (eo.getExtension().compareTo(extensionSearched) == 0)
-				return eo;
-		}
-
-		if(defaultWhenNotFound)
-			return defaultExportOption;
-		else
-			return null;
-	}
-
-	public ExportOption getFirstExportOptionFromExtension(String extension)
-	{
-		return getFirstExportOptionFromExtension(extension, false);
-	}
-
-	private void registerDefaultExportOption()
-	{
-		defaultExportOption= new ExportOption("IED",""+((char)30),""+((char)29),"ied",false,false)
-		{
-			@Override
-			public String escapeField(String data){ return data; }
-
-			@Override
-			public String unescapeField(String data){ return data; }
-		};
-		registerExportOption(defaultExportOption);
-
-		registerExportOption(new ExportOption("TSV","\t","\n","csv",true,false)
-		{
-			@Override
-			public String escapeField(String data){ return data; }
-
-			@Override
-			public String unescapeField(String data){ return data; }
-		});
-	}
-
-
 }

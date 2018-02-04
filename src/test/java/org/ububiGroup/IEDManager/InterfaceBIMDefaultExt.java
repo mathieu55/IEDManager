@@ -3,16 +3,15 @@ package org.ububiGroup.IEDManager; /**
  */
 import static org.junit.Assert.*;
 
-import org.ububiGroup.IEDManager.IO.BIM.BIMExporter;
-import org.ububiGroup.IEDManager.IO.BIM.BIMImporter;
+import org.ububiGroup.IEDManager.IO.BIM.IED1Exporter;
+import org.ububiGroup.IEDManager.IO.BIM.IED1Importer;
+import org.ububiGroup.IEDManager.IO.generic.baseExporter;
+import org.ububiGroup.IEDManager.IO.generic.baseImporter;
 import org.ububiGroup.IEDManager.IO.generic.IEDImportHandler;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,24 +20,18 @@ import java.util.ArrayList;
 public class InterfaceBIMDefaultExt
 {
 
-    private File materialFile;
-    private File objectFile;
-    private File objectTypeFile;
+    private String filePath;
 
-    @Before
+    @BeforeEach
     public void createTempFile() throws IOException
     {
-        materialFile = File.createTempFile("tmpBM",".ied");
-        objectFile = File.createTempFile("tmpBM",".ied");
-        objectTypeFile = File.createTempFile("tmpBM",".ied");
+        filePath = File.createTempFile("tmp",".zip").getPath();
     }
 
-    @After
+    @AfterEach
     public void deleteTempFile() throws IOException
     {
-        materialFile.delete();
-        objectFile.delete();
-        objectTypeFile.delete();
+        new File(filePath).delete();
     }
 
     @Test
@@ -48,17 +41,19 @@ public class InterfaceBIMDefaultExt
         BIMMaterial mat2 = new BIMMaterial(2l,22l,"Mat2",2.2,22.22,0.2,0.22);
         BIMMaterial mat3 = new BIMMaterial(3l,33l,"Mat3",3.3,33.33,0.3,0.33);
 
-	    final ArrayList<BIMMaterial> lstImp = new ArrayList<BIMMaterial>();
+        final ArrayList<BIMMaterial> lstImp = new ArrayList<BIMMaterial>();
 
-	    //Write material in designed file
-        try(BIMExporter exp = new BIMExporter(materialFile, objectFile, objectTypeFile))
+        //Write material in designed file
+
+        try(baseExporter exp = new IED1Exporter())
         {
+            exp.init(filePath);
             exp.ExportBIMMaterial(mat1);
             exp.ExportBIMMaterial(mat2);
             exp.ExportBIMMaterial(mat3);
         }
 
-	    //Create a handler
+        //Create a handler
         IEDImportHandler<BIMMaterial> materialHandler = new IEDImportHandler<BIMMaterial>()
         {
             @Override
@@ -69,22 +64,23 @@ public class InterfaceBIMDefaultExt
             }
         };
 
-	    //Read with the handler
-        try(BIMImporter imp = new BIMImporter(materialFile, objectFile, objectTypeFile,materialHandler,null,null))
+        //Read with the handler
+        try(baseImporter imp = new IED1Importer())
         {
-            imp.ProcessAll();
+            imp.init(filePath);
+            imp.ProcessAll(materialHandler,null,null);
         }
 
-	    //Validate the data
+        //Validate the data
         assertSame("Quatity of item imported",3,lstImp.size());
 
-	    BIMMaterial mat4 = lstImp.get(0);;
-	    BIMMaterial mat5 = lstImp.get(1);;
-	    BIMMaterial mat6 = lstImp.get(2);
+        BIMMaterial mat4 = lstImp.get(0);;
+        BIMMaterial mat5 = lstImp.get(1);;
+        BIMMaterial mat6 = lstImp.get(2);
 
-	    assertArrayEquals("Material 1", mat1.export(), mat4.export());
-	    assertArrayEquals("Material 2", mat2.export(), mat5.export());
-	    assertArrayEquals("Material 3", mat3.export(), mat6.export());
+        assertArrayEquals("Material 1", mat1.export(), mat4.export());
+        assertArrayEquals("Material 2", mat2.export(), mat5.export());
+        assertArrayEquals("Material 3", mat3.export(), mat6.export());
     }
 
     @Test
@@ -97,8 +93,9 @@ public class InterfaceBIMDefaultExt
         final ArrayList<BIMObject> lstImp = new ArrayList<BIMObject>();
 
         //Write Object in designed file
-        try(BIMExporter exp = new BIMExporter(materialFile, objectFile, objectTypeFile))
+        try(baseExporter exp = new IED1Exporter())
         {
+            exp.init(filePath);
             exp.ExportBIMObject(obj1);
             exp.ExportBIMObject(obj2);
             exp.ExportBIMObject(obj3);
@@ -116,9 +113,10 @@ public class InterfaceBIMDefaultExt
         };
 
         //Read with the handler
-        try(BIMImporter imp = new BIMImporter(materialFile, objectFile, objectTypeFile,null,ObjectHandler,null))
+        try(baseImporter imp = new IED1Importer())
         {
-            imp.ProcessAll();
+            imp.init(filePath);
+            imp.ProcessAll(null,ObjectHandler,null);
         }
 
         //Validate the data
@@ -143,8 +141,9 @@ public class InterfaceBIMDefaultExt
         final ArrayList<BIMObjectType> lstImp = new ArrayList<BIMObjectType>();
 
         //Write material in designed file
-        try(BIMExporter exp = new BIMExporter(materialFile, objectFile, objectTypeFile))
+        try(baseExporter exp = new IED1Exporter())
         {
+            exp.init(filePath);
             exp.ExportBIMObjectType(ObjType1);
             exp.ExportBIMObjectType(ObjType2);
             exp.ExportBIMObjectType(ObjType3);
@@ -162,9 +161,10 @@ public class InterfaceBIMDefaultExt
         };
 
         //Read with the handler
-        try(BIMImporter imp = new BIMImporter(materialFile, objectFile, objectTypeFile,null,null,objectTypeHandler))
+        try(baseImporter imp = new IED1Importer())
         {
-            imp.ProcessAll();
+            imp.init(filePath);
+            imp.ProcessAll(null,null,objectTypeHandler);
         }
 
         //Validate the data

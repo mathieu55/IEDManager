@@ -2,7 +2,7 @@ package org.ububiGroup.IEDManager.model.BIM;
 
 import org.ububiGroup.IEDManager.Annotation.SerializableVar;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
-import org.ububiGroup.IEDManager.IO.generic.BIMFactory;
+import org.ububiGroup.IEDManager.IO.generic.BIMDataFactory;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -71,14 +71,14 @@ public class BIMObjectType extends BIMData
     //***************************************
     //     BIMOjectType Factory
     //***************************************
-    protected static BIMFactory factory = new BIMObjectTypeFactory();
+    protected static BIMDataFactory factory = new BIMObjectTypeFactory();
 
-    public static BIMFactory getFactory()
+    public static BIMDataFactory getFactory()
     {
         return factory;
     }
 
-    private static class BIMObjectTypeFactory extends BIMFactory<BIMObjectType>
+    private static class BIMObjectTypeFactory extends BIMDataFactory<BIMObjectType>
     {
         public BIMObjectType create()
         {
