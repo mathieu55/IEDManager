@@ -33,9 +33,9 @@ public final class ExportOptionManager
 			 @Override
 			 public baseImporter getImporter() { return new TSVImporter(); }
 		 };
-		this.lstExportOption.put(tmp.name,tmp);
+		this.lstExportOption.put(tmp.getName(),tmp);
 
-		tmp=new ExportOption("IED legacy","ied1")
+		tmp=new ExportOption("IED v1","ied1")
 		{
 			@Override
 			public baseExporter getExporter() { return new IED1Exporter(); }
@@ -43,7 +43,17 @@ public final class ExportOptionManager
 			@Override
 			public baseImporter getImporter() { return new IED1Importer(); }
 		};
-		this.lstExportOption.put(tmp.name,tmp);
+		this.lstExportOption.put(tmp.getName(),tmp);
+
+		tmp=new ExportOption("IED v2","ied2")
+		{
+			@Override
+			public baseExporter getExporter() { return new IED2Exporter(); }
+
+			@Override
+			public baseImporter getImporter() { return new IED2Importer(); }
+		};
+		this.lstExportOption.put(tmp.getName(),tmp);
 
 		tmp=new ExportOption("IED","ied")
 		{
@@ -53,7 +63,7 @@ public final class ExportOptionManager
 			@Override
 			public baseImporter getImporter() { return new IEDImporter(); }
 		};
-		this.lstExportOption.put(tmp.name,tmp);
+		this.lstExportOption.put(tmp.getName(),tmp);
 
 		defaultOption=tmp;
 	}
@@ -65,17 +75,4 @@ public final class ExportOptionManager
 		return (ExportOption[]) lstExportOption.values().toArray(lst);
 	}
 
-	public abstract class ExportOption
-	{
-		@Getter private String name;
-		@Getter private String extension;
-		protected ExportOption(String name, String extension)
-		{
-			this.name=name;
-			this.extension=extension;
-		}
-
-		public abstract baseExporter getExporter();
-		public abstract baseImporter getImporter();
-	}
 }

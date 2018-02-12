@@ -32,7 +32,10 @@ public class BIMObjectType extends BIMData
     //***************************************
     //             constructor
     //***************************************
-    public BIMObjectType(){}
+    public BIMObjectType()
+    {
+        this(-1,"","","","");
+    }
 
     public BIMObjectType(long id, String name, String uniformatCode, String uniformatDesc,String familyName)
     {
@@ -52,7 +55,7 @@ public class BIMObjectType extends BIMData
         {
             try
             {
-                this.id = Long.parseLong(data[0],10);
+                if(data[0].compareTo("")!=0)this.id = Long.parseLong(data[0],10);
                 this.name = data[1];
                 this.uniformatCode = data[2];
                 this.uniformatDesc = data[3];

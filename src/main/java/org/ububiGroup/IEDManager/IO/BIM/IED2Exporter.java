@@ -1,7 +1,5 @@
 package org.ububiGroup.IEDManager.IO.BIM;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.ububiGroup.IEDManager.IO.generic.baseExporter;
 import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
@@ -25,11 +23,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class IEDExporter extends baseExporter
+public class IED2Exporter extends baseExporter
 {
-    private final static String OBJECTS_TAG="Objects";
-    private final static String MATERIALS_TAG="Materials";
-
     private DocumentBuilder docBuilder;
     private Document doc;
     private Element dataElement;
@@ -38,9 +33,7 @@ public class IEDExporter extends baseExporter
     private String[] headerObject=null;
     private String[] headerObjectType=null;
 
-    private HashMap<Long, typeElem> lstType=new HashMap<>();
-
-    public final static String version="0.0.3";
+    public final static String version="0.0.2";
 
     @Override
     public void init(String filename) throws IOException
@@ -67,8 +60,7 @@ public class IEDExporter extends baseExporter
         {
             headerMaterial = escapeHeader(bimMaterial.getHeaders());
         }
-        typeElem typeMap=getOrCreateTypeElem(bimMaterial.getTypeId());
-        return ExportBIMData(headerMaterial,bimMaterial,typeMap.getMaterialsElement())!=null;
+        return ExportBIMData(headerMaterial,bimMaterial);
     }
 
     @Override
@@ -78,9 +70,7 @@ public class IEDExporter extends baseExporter
         {
             headerObject = escapeHeader(bimObject.getHeaders());
         }
-
-        typeElem typeMap=getOrCreateTypeElem(bimObject.getTypeId());
-        return  ExportBIMData(headerObject,bimObject,typeMap.getObjectsElement())!=null;
+        return  ExportBIMData(headerObject,bimObject);
     }
 
     @Override
@@ -90,11 +80,7 @@ public class IEDExporter extends baseExporter
         {
             headerObjectType = escapeHeader(bimObjectType.getHeaders());
         }
-
-        typeElem typeMap = getOrCreateTypeElem(bimObjectType.getId());
-        ExportAttributesFromBIMData(headerObjectType,bimObjectType,typeMap.getObjectTypeElement());
-
-        return true;
+        return  ExportBIMData(headerObjectType,bimObjectType);
     }
 
     @Override
@@ -120,46 +106,21 @@ public class IEDExporter extends baseExporter
         ZipFileUtil.create(files,getFilePath());
     }
 
-    private typeElem getOrCreateTypeElem(long id)
+    private boolean ExportBIMData(String[] headers, BIMData bimData)
     {
-        typeElem elemMap = lstType.getOrDefault(id,null);
-
-        if(elemMap==null)
-        {
-            Element elem = doc.createElement(BIMObjectType.class.getSimpleName());
-            dataElement.appendChild(elem);
-
-            Element elemObjects = doc.createElement(OBJECTS_TAG);
-            elem.appendChild(elemObjects);
-            Element elemMaterials = doc.createElement(MATERIALS_TAG);
-            elem.appendChild(elemMaterials);
-
-            elemMap=new typeElem(elem,elemObjects,elemMaterials);
-            this.lstType.put(id,elemMap);
-        }
-        return elemMap;
-    }
-
-    private Element ExportBIMData(String[] headers, BIMData bimData, Element root)
-    {
+        String[] data = bimData.export();
         String typeName = bimData.getClass().getSimpleName();
 
         //Create XML Element for the object
         Element elem = doc.createElement(typeName);
-        root.appendChild(elem);
+        dataElement.appendChild(elem);
 
-        ExportAttributesFromBIMData(headers, bimData, elem);
-        return elem;
-    }
-
-    private void ExportAttributesFromBIMData(String[] headers, BIMData bimData, Element elem)
-    {
-        String[] data = bimData.export();
         //Write all attribute of the object
         for(int i = 0 ; i < headers.length;i++)
         {
             elem.setAttribute(headers[i],data[i]);
         }
+        return true;
     }
 
     private String[] escapeHeader(String[] headers)
@@ -173,20 +134,5 @@ public class IEDExporter extends baseExporter
             escapedHeaders[i]=headers[i].replaceAll(" ","");
         }
         return escapedHeaders;
-    }
-
-    public class typeElem
-    {
-        public typeElem(Element objectTypeElement, Element objectsElement, Element materialsElement)
-        {
-            this.objectTypeElement=objectTypeElement;
-            this.objectsElement=objectsElement;
-            this.materialsElement=materialsElement;
-        }
-
-        @Getter @Setter private Element objectTypeElement;
-        @Getter @Setter private Element objectsElement;
-        @Getter @Setter private Element materialsElement;
-
     }
 }

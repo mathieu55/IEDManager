@@ -1,7 +1,5 @@
 package org.ububiGroup.IEDManager.IO.BIM;
 
-import lombok.Getter;
-import org.ububiGroup.IEDManager.IO.generic.BIMDataFactory;
 import org.ububiGroup.IEDManager.IO.generic.IEDImportHandler;
 import org.ububiGroup.IEDManager.IO.generic.baseImporter;
 import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
@@ -9,23 +7,34 @@ import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Handler;
 
 public class IEDImporter extends baseImporter
 {
     private File tmpFile;
     private Node dataNode;
     private Document doc=null;
+    private final static String OBJECTS_TAG="Objects";
+    private final static String MATERIALS_TAG="Materials";
+
+    private String[] headerMaterial = escapeHeader(BIMMaterial.getFactory().create().getHeaders());
+    private String[] headerObject = escapeHeader(BIMObject.getFactory().create().getHeaders());
+    private String[] headerObjectType = escapeHeader(BIMObjectType.getFactory().create().getHeaders());
+
+    private IEDImportHandler<BIMMaterial> bimMaterialHandler;
+    private IEDImportHandler<BIMObject> bimObjectHandler;
+    private IEDImportHandler<BIMObjectType> bimObjectTypeHandler;
 
     @Override
     public void init(String filepath) throws IOException
@@ -56,52 +65,92 @@ public class IEDImporter extends baseImporter
     @Override
     public boolean ProcessAll(IEDImportHandler<BIMMaterial> bimMaterialHandler, IEDImportHandler<BIMObject> bimObjectHandler, IEDImportHandler<BIMObjectType> bimObjectTypeHandler)
     {
-        boolean succeed = true;
+        boolean result=true;
+        this.bimMaterialHandler=bimMaterialHandler;
+        this.bimObjectHandler = bimObjectHandler;
+        this.bimObjectTypeHandler = bimObjectTypeHandler;
+
         NodeList lstNode = dataNode.getChildNodes();
 
-        String[] headerMaterial = escapeHeader(BIMMaterial.getFactory().create().getHeaders());
-        String[] headerObject = escapeHeader(BIMObject.getFactory().create().getHeaders());
-        String[] headerObjectType = escapeHeader(BIMObjectType.getFactory().create().getHeaders());
-
+        //For all object types node
         for(int i=0;i<lstNode.getLength();i++)
         {
-            Node currentNode = lstNode.item(i);
-            String tagName = currentNode.getNodeName();
-            if(tagName.compareTo(BIMMaterial.class.getSimpleName())==0)
+            result&=processObjectType(lstNode.item(i));
+        }
+
+        return result;
+    }
+
+    protected boolean processObjectType(Node objectTypeNode)
+    {
+        boolean result=true;
+        if(bimObjectTypeHandler!=null)
+        {
+            BIMObjectType tmpObj = new BIMObjectType();
+            result&=ProcessElement(objectTypeNode, tmpObj, headerObjectType);
+            if(tmpObj.getId()!=-1)bimObjectTypeHandler.processData(tmpObj);
+        }
+
+        //Process Objects and Materials
+        if(objectTypeNode.hasChildNodes())
+        {
+            NodeList lstNode = objectTypeNode.getChildNodes();
+            for(int i=0;i<lstNode.getLength();i++)
             {
-                if(bimMaterialHandler!=null)
+                Node currentNode = lstNode.item(i);
+                String tagName = currentNode.getNodeName();
+                if(OBJECTS_TAG.compareTo(tagName)==0)
                 {
-                    BIMMaterial tmpObj = new BIMMaterial();
-                    ProcessElement(currentNode, tmpObj, headerMaterial);
-                    bimMaterialHandler.processData(tmpObj);
+                    result&=processObjects(currentNode);
                 }
-            }
-            else if(tagName.compareTo(BIMObject.class.getSimpleName())==0)
-            {
-                if(bimObjectHandler!=null)
+                else if(MATERIALS_TAG.compareTo(tagName)==0)
                 {
-                    BIMObject tmpObj = new BIMObject();
-                    ProcessElement(currentNode, tmpObj, headerObject);
-                    bimObjectHandler.processData(tmpObj);
+                    result&=processMaterials(currentNode);
                 }
-            }
-            else if(tagName.compareTo(BIMObjectType.class.getSimpleName())==0)
-            {
-                if(bimObjectTypeHandler!=null)
-                {
-                    BIMObjectType tmpObj = new BIMObjectType();
-                    ProcessElement(currentNode, tmpObj, headerObjectType);
-                    bimObjectTypeHandler.processData(tmpObj);
-                }
-            }
-            else
-            {
-                System.out.println("Processing error, unknown tag :"+tagName);
-                succeed = false;
             }
         }
 
-        return succeed;
+        return result;
+    }
+
+    protected boolean processObjects(Node objectsNode)
+    {
+        if(bimObjectHandler==null)
+            return true;
+
+        boolean result=true;
+        if(objectsNode.hasChildNodes())
+        {
+            NodeList lstNode = objectsNode.getChildNodes();
+            for (int i = 0; i < lstNode.getLength(); i++)
+            {
+                BIMObject tmpObj = new BIMObject();
+                ProcessElement(lstNode.item(i), tmpObj, headerObject);
+                bimObjectHandler.processData(tmpObj);
+            }
+        }
+
+        return result;
+    }
+
+    protected boolean processMaterials(Node materialsNode)
+    {
+        if(bimMaterialHandler==null)
+            return true;
+
+        boolean result=true;
+        if(materialsNode.hasChildNodes())
+        {
+            NodeList lstNode = materialsNode.getChildNodes();
+            for (int i = 0; i < lstNode.getLength(); i++)
+            {
+                BIMMaterial tmpObj = new BIMMaterial();
+                ProcessElement(lstNode.item(i), tmpObj, headerMaterial);
+                bimMaterialHandler.processData(tmpObj);
+            }
+        }
+
+        return result;
     }
 
     protected boolean ProcessElement(Node xmlData,BIMData dataObj,String[] headers)
@@ -111,7 +160,11 @@ public class IEDImporter extends baseImporter
 
         for(int i =0;i<headers.length;i++)
         {
-            data[i]=attributes.getNamedItem(headers[i]).getNodeValue();
+            Node tmp = attributes.getNamedItem(headers[i]);
+            if(tmp!=null)
+                data[i]=attributes.getNamedItem(headers[i]).getNodeValue();
+            else
+                data[i]="";
         }
         dataObj.load(data);
 

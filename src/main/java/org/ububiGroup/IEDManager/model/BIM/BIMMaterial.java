@@ -5,6 +5,7 @@ import org.ububiGroup.IEDManager.model.generic.BIMData;
 import org.ububiGroup.IEDManager.IO.generic.BIMDataFactory;
 import lombok.Getter;
 import lombok.Setter;
+import org.ububiGroup.IEDManager.model.generic.ITypedBIMData;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
 /**
  * Created by mathieu on 6/18/2016.
  */
-public class BIMMaterial extends BIMData
+public class BIMMaterial extends BIMData implements ITypedBIMData
 {
     @SerializableVar(Order=1, Name="Material Id")
     @Getter protected long id;
@@ -88,8 +89,8 @@ public class BIMMaterial extends BIMData
         {
             try
             {
-                this.id = Long.parseLong(data[0],10);
-                this.ownerId = Long.parseLong(data[1],10);
+                if(data[0].compareTo("")!=0)this.id = Long.parseLong(data[0],10);
+                if(data[1].compareTo("")!=0)this.ownerId = Long.parseLong(data[1],10);
                 this.name = data[2];
                 this.area = Double.parseDouble(data[3]);
                 this.volume = Double.parseDouble(data[4]);
@@ -117,6 +118,16 @@ public class BIMMaterial extends BIMData
     public static BIMDataFactory getFactory()
     {
         return factory;
+    }
+
+    @Override
+    public long getTypeId() {
+        return getOwnerId();
+    }
+
+    @Override
+    public void setTypeId(long id) {
+        setOwnerId(id);
     }
 
     private static class BIMMaterialFactory extends BIMDataFactory<BIMMaterial>

@@ -5,6 +5,7 @@ import org.ububiGroup.IEDManager.model.generic.BIMData;
 import org.ububiGroup.IEDManager.IO.generic.BIMDataFactory;
 import lombok.Getter;
 import lombok.Setter;
+import org.ububiGroup.IEDManager.model.generic.ITypedBIMData;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
 /**
  * Created by mathieu on 6/18/2016.
  */
-public class BIMObject extends BIMData
+public class BIMObject extends BIMData implements ITypedBIMData
 {
     @SerializableVar(Order=1, Name="Object Id")
     @Getter protected long id;
@@ -41,7 +42,10 @@ public class BIMObject extends BIMData
     //***************************************
     //             constructor
     //***************************************
-    public BIMObject(){}
+    public BIMObject()
+    {
+        this(-1,"",-1,"","","",0,0);
+    }
 
     public BIMObject(long id,String name, long typeId, String objectType, String category,
                      String uniformatCode, double area, double volume)
@@ -65,9 +69,9 @@ public class BIMObject extends BIMData
         {
             try
             {
-                this.id = Long.parseLong(data[0],10);
+                if(data[0].compareTo("")!=0)this.id = Long.parseLong(data[0],10);
                 this.name = data[1];
-                this.typeId = Long.parseLong(data[2],10);
+                if(data[2].compareTo("")!=0)this.typeId = Long.parseLong(data[2],10);
                 this.objectType = data[3];
                 this.category = data[4];
                 this.uniformatCode = data[5];
