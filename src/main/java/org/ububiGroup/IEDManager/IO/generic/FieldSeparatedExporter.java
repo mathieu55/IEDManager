@@ -6,6 +6,7 @@ import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class FieldSeparatedExporter extends baseExporter
     protected String bimMaterialFilePath;
     protected String bimObjectFilePath;
     protected String bimObjectTypeFilePath;
+    protected String bimProjectFilePath="";
 
     protected FieldSeparatedOption option;
 
@@ -39,7 +41,6 @@ public class FieldSeparatedExporter extends baseExporter
     public void init(String fileName) throws IOException
     {
         super.init(fileName);
-        this.option=option;
 
         bimMaterialF=File.createTempFile("tmpBM", ".tmp");
         bimObjectF=File.createTempFile("tmpBO", ".tmp");
@@ -52,6 +53,25 @@ public class FieldSeparatedExporter extends baseExporter
         bimMaterialW = new FieldSeparatedWriter(getBufferedWriter(bimMaterialF),this.option);
         bimObjectW = new FieldSeparatedWriter(getBufferedWriter(bimObjectF),this.option);
         bimObjectTypeW = new FieldSeparatedWriter(getBufferedWriter(bimObjectTypeF),this.option);
+    }
+
+    @Override
+    public boolean ExportBIMProject(BIMProject bimProject) throws IOException
+    {
+        if("".compareTo(bimProjectFilePath)!=0)
+            throw new IOException("You can export only one BIMproject");
+
+        File bimProjectF = File.createTempFile("tmpProject", ".tmp");
+        bimProjectFilePath = bimProjectF.getPath();
+        try(FieldSeparatedWriter<BIMProject> bimProjectW = new FieldSeparatedWriter(getBufferedWriter(bimProjectF),this.option))
+        {
+            try {
+                return bimProjectW.writeObject(bimProject);
+            }
+            catch(IOException e) {
+                return false;
+            }
+        }
     }
 
     public boolean ExportBIMMaterial(BIMMaterial bimMaterial)
@@ -88,6 +108,8 @@ public class FieldSeparatedExporter extends baseExporter
     {
         HashMap<String,String> fileMap=new HashMap<>();
 
+        if("".compareTo(this.bimProjectFilePath)!=0)
+            fileMap.put(IEDFileType.IEDProject.toString()+"."+option.getExtension(),this.bimProjectFilePath);
         fileMap.put(IEDFileType.IEDMaterial.toString()+"."+option.getExtension(),this.bimMaterialFilePath);
         fileMap.put(IEDFileType.IEDObject.toString()+"."+option.getExtension(),this.bimObjectFilePath);
         fileMap.put(IEDFileType.IEDObjectType.toString()+"."+option.getExtension(),this.bimObjectTypeFilePath);
@@ -113,6 +135,7 @@ public class FieldSeparatedExporter extends baseExporter
         bimMaterialF.deleteOnExit();
         bimObjectF.deleteOnExit();
         bimObjectTypeF.deleteOnExit();
+        if("".compareTo(bimProjectFilePath)!=0)new File(bimProjectFilePath).deleteOnExit();
     }
 
 }

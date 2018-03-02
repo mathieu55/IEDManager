@@ -120,16 +120,6 @@ public class BIMMaterial extends BIMData implements ITypedBIMData
         return factory;
     }
 
-    @Override
-    public long getTypeId() {
-        return getOwnerId();
-    }
-
-    @Override
-    public void setTypeId(long id) {
-        setOwnerId(id);
-    }
-
     private static class BIMMaterialFactory extends BIMDataFactory<BIMMaterial>
     {
         public BIMMaterial create()
@@ -144,5 +134,15 @@ public class BIMMaterial extends BIMData implements ITypedBIMData
         if(serializableMap == null)
             serializableMap = BIMData.loadMap(this);
         return serializableMap;
+    }
+
+    @Override
+    public long getTypeId() {
+        return getOwnerId();
+    }
+
+    @Override
+    public void setTypeId(long id) {
+        setOwnerId(id);
     }
 }

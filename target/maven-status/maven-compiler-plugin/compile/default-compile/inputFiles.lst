@@ -3,6 +3,7 @@ D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\BIM
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\model\generic\ITypedBIMData.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\generic\FieldSeparatedWriter.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\generic\FieldSeperatedImporter.java
+D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\Utils\Convert.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\BIM\IED2Exporter.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\BIM\IED1Importer.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\BIM\IED2Importer.java
@@ -25,6 +26,7 @@ D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\BIM
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\BIM\IEDImporter.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\generic\baseWriter.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\generic\BIMDataFactory.java
+D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\model\BIM\BIMProject.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\generic\IEDImportHandler.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\BIM\TSVExporter.java
 D:\mathieu\workspace\wsIEDManager\src\main\java\org\ububiGroup\IEDManager\IO\generic\CSVReader.java

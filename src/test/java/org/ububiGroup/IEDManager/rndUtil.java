@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 
 import java.util.*;
 
@@ -73,6 +74,27 @@ public class rndUtil
     public static double getRandomDouble(double minimum, double maximum)
     {
         return minimum + ((maximum - minimum) * rnd.nextDouble());
+    }
+
+    public static BIMProject[] randomProjects(int minimum, int maximum)
+    {
+        int nbMaterial= minimum==maximum ? minimum : rndUtil.getRandomInt(minimum,maximum);
+        BIMProject[] lstProject = new BIMProject[nbMaterial];
+
+        for(int i=0; i<lstProject.length; i++)
+        {
+            String UUID =rndUtil.getRandomString(25,50,charSet.alphaNumFlags);
+            Double lifeTime = rndUtil.getRandomDouble(1,100);
+            Integer numberOfStorey = rndUtil.getRandomInt(1,100);;
+            String buildingFunction=rndUtil.getRandomString(25,50,charSet.alphaNumSpaceFlags);
+            Double latitude = rndUtil.getRandomDouble(0,1000);
+            Double longitude = rndUtil.getRandomDouble(0,1000);
+            String address = rndUtil.getRandomString(25,150,charSet.alphaNumSpaceFlags);
+            String structureType = rndUtil.getRandomString(25,50,charSet.alphaNumSpaceFlags);;
+            lstProject[i]=new BIMProject();
+        }
+
+        return lstProject;
     }
 
     public static HashMap<Long,BIMMaterial> randomMaterials(int minimum, int maximum)

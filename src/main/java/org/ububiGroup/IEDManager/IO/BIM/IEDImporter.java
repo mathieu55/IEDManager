@@ -6,6 +6,7 @@ import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -22,19 +23,28 @@ import java.util.HashMap;
 
 public class IEDImporter extends baseImporter
 {
-    private File tmpFile;
-    private Node dataNode;
+    private File tmpFile=null;
     private Document doc=null;
-    private final static String OBJECTS_TAG="Objects";
-    private final static String MATERIALS_TAG="Materials";
+
+    private Node fileNode=null;
+    private Node dataNode=null;
+    private Node projectNode=null;
+
+    private final static String DATA_TAG = "data";
+    private final static String OBJECTS_TAG = "Objects";
+    private final static String MATERIALS_TAG = "Materials";
+    private final static String PROJECT_TAG = BIMProject.getFactory().create().getClass().getSimpleName();
 
     private String[] headerMaterial = escapeHeader(BIMMaterial.getFactory().create().getHeaders());
     private String[] headerObject = escapeHeader(BIMObject.getFactory().create().getHeaders());
     private String[] headerObjectType = escapeHeader(BIMObjectType.getFactory().create().getHeaders());
+    private String[] headerProject = escapeHeader(BIMProject.getFactory().create().getHeaders());
 
-    private IEDImportHandler<BIMMaterial> bimMaterialHandler;
-    private IEDImportHandler<BIMObject> bimObjectHandler;
-    private IEDImportHandler<BIMObjectType> bimObjectTypeHandler;
+    private IEDImportHandler<BIMMaterial> bimMaterialHandler=null;
+    private IEDImportHandler<BIMObject> bimObjectHandler=null;
+    private IEDImportHandler<BIMObjectType> bimObjectTypeHandler=null;
+
+    private BIMProject project = null;
 
     @Override
     public void init(String filepath) throws IOException
@@ -59,7 +69,31 @@ public class IEDImporter extends baseImporter
             e.printStackTrace();
         }
 
-        dataNode = doc.getDocumentElement();
+        fileNode = doc.getDocumentElement();
+        NodeList lstNode = fileNode.getChildNodes();
+        for(int i = 0;i<lstNode.getLength();i++)
+        {
+            Node iNode = lstNode.item(i);
+            if(DATA_TAG.compareTo(iNode.getNodeName())==0)
+                dataNode=iNode;
+            else if(PROJECT_TAG.compareTo(iNode.getNodeName())==0)
+                projectNode=iNode;
+        }
+    }
+
+    @Override
+    public BIMProject ReadBimProject()
+    {
+        if(projectNode==null)
+            return null;
+
+        if(this.project==null)
+        {
+            this.project = new BIMProject();
+            ProcessElement(projectNode, this.project, headerObjectType);
+        }
+
+        return this.project;
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -32,8 +33,13 @@ public class IEDExporter extends baseExporter
 
     private DocumentBuilder docBuilder;
     private Document doc;
+
+    private Element fileElement;
     private Element dataElement;
 
+    private boolean BIMProjectExported=false;
+
+    private String[] headerProject=null;
     private String[] headerMaterial=null;
     private String[] headerObject=null;
     private String[] headerObjectType=null;
@@ -55,9 +61,27 @@ public class IEDExporter extends baseExporter
             e.printStackTrace();
         }
         doc = docBuilder.newDocument();
+        fileElement = doc.createElement("IEDFile");
+        doc.appendChild(fileElement);
+
         dataElement = doc.createElement("data");
-        doc.appendChild(dataElement);
+        fileElement.appendChild(dataElement);
         dataElement.setAttribute("version",version);
+    }
+
+    @Override
+    public boolean ExportBIMProject(BIMProject bimProject) throws IOException
+    {
+        if(BIMProjectExported)
+            throw new IOException("You can export only one BIMproject");
+
+        if(headerProject==null)
+        {
+            headerProject = escapeHeader(bimProject.getHeaders());
+        }
+
+        BIMProjectExported=ExportBIMData(headerProject,bimProject,fileElement)!=null;
+        return BIMProjectExported;
     }
 
     @Override
@@ -146,7 +170,7 @@ public class IEDExporter extends baseExporter
 
         //Create XML Element for the object
         Element elem = doc.createElement(typeName);
-        root.appendChild(elem);
+        if(root!=null)root.appendChild(elem);
 
         ExportAttributesFromBIMData(headers, bimData, elem);
         return elem;

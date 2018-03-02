@@ -12,7 +12,7 @@ public class InterfaceIED2 extends InterfaceByExt
 {
     public InterfaceIED2()
     {
-        super(new ExportOption("IED2","ied2")
+        super(new ExportOption("IED2","ied2", false)
         {
             @Override
             public baseExporter getExporter() { return new IED2Exporter(); }

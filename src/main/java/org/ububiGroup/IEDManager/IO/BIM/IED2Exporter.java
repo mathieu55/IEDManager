@@ -5,6 +5,7 @@ import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -51,6 +52,11 @@ public class IED2Exporter extends baseExporter
         dataElement = doc.createElement("data");
         doc.appendChild(dataElement);
         dataElement.setAttribute("version",version);
+    }
+
+    @Override
+    public boolean ExportBIMProject(BIMProject bimProject) throws IOException {
+        return false;
     }
 
     @Override

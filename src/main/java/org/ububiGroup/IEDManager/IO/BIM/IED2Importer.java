@@ -8,6 +8,7 @@ import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -51,6 +52,13 @@ public class IED2Importer extends baseImporter
         }
 
         dataNode = doc.getDocumentElement();
+    }
+
+
+    @Override
+    public BIMProject ReadBimProject()
+    {
+        return null;
     }
 
     @Override

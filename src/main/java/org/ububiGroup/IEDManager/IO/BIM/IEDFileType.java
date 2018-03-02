@@ -8,5 +8,6 @@ public enum IEDFileType
 	None,
 	IEDMaterial,
 	IEDObject,
-	IEDObjectType
+	IEDObjectType,
+	IEDProject
 }

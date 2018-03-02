@@ -45,7 +45,7 @@ public final class ExportOptionManager
 		};
 		this.lstExportOption.put(tmp.getName(),tmp);
 
-		tmp=new ExportOption("IED v2","ied2")
+		tmp=new ExportOption("IED v2","ied2",false)
 		{
 			@Override
 			public baseExporter getExporter() { return new IED2Exporter(); }

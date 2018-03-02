@@ -10,6 +10,7 @@ import org.ububiGroup.IEDManager.Utils.ZipFileUtil;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
 import lombok.Getter;
 
@@ -26,6 +27,8 @@ public abstract class baseImporter implements Closeable
     {
         this.filepath=filepath;
     }
+
+    public abstract BIMProject ReadBimProject();
 
     public abstract boolean ProcessAll(IEDImportHandler<BIMMaterial> bimMaterialHandler,
                               IEDImportHandler<BIMObject> bimObjectHandler,

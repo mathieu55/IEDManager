@@ -5,8 +5,6 @@ package org.ububiGroup.IEDManager; /**
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.ububiGroup.IEDManager.IO.BIM.TSVExporter;
-import org.ububiGroup.IEDManager.IO.BIM.TSVImporter;
 import org.ububiGroup.IEDManager.IO.ExportOption;
 import org.ububiGroup.IEDManager.IO.generic.IEDImportHandler;
 import org.ububiGroup.IEDManager.IO.generic.baseExporter;
@@ -14,6 +12,7 @@ import org.ububiGroup.IEDManager.IO.generic.baseImporter;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 import org.ububiGroup.IEDManager.model.generic.BIMData;
 
 import java.io.File;
@@ -48,35 +47,57 @@ public abstract class InterfaceByExt
     @Test
     public void testModuleInterfaceMaterial() throws IOException
     {
-        testModuleInterface(rndUtil.randomMaterials(10,50),null,null);
+        BIMProject[] lstProject = rndUtil.randomProjects(1,1);
+        testModuleInterface(lstProject,rndUtil.randomMaterials(10,50),null,null);
     }
 
     @Test
     public void testModuleInterfaceObject() throws IOException
     {
-        testModuleInterface(null,rndUtil.randomObjects(10,50),null);
+        BIMProject[] lstProject = rndUtil.randomProjects(1,1);
+        testModuleInterface(lstProject,null,rndUtil.randomObjects(10,50),null);
     }
 
     @Test
     public void testModuleInterfaceObjectType() throws IOException
     {
-        testModuleInterface(null,null,rndUtil.randomObjectTypes(10,50));
+        BIMProject[] lstProject = rndUtil.randomProjects(1,1);
+        testModuleInterface(lstProject,null,null,rndUtil.randomObjectTypes(10,50));
     }
 
     @Test
     public void testModuleInterfaceAllBimData() throws IOException
     {
-        testModuleInterface(rndUtil.randomMaterials(10,50),rndUtil.randomObjects(10,50),rndUtil.randomObjectTypes(10,50));
+        BIMProject[] lstProject = rndUtil.randomProjects(1,1);
+        testModuleInterface(lstProject, rndUtil.randomMaterials(10,50), rndUtil.randomObjects(10,50), rndUtil.randomObjectTypes(10,50));
     }
 
-    private void testModuleInterface(HashMap<Long,BIMMaterial> lstMaterial,HashMap<Long,BIMObject> lstObject,HashMap<Long,BIMObjectType> lstObjectType) throws IOException
+    @Test
+    public void TestModuleInterfaceMultipleProject()
+    {
+        BIMProject[] lstProject = rndUtil.randomProjects(2,10);
+        if(exportOption.isProjectSupported())
+            assertThrows(IOException.class,
+                         ()->{testModuleInterface(lstProject, rndUtil.randomMaterials(1,10), rndUtil.randomObjects(1,10), rndUtil.randomObjectTypes(1,10));},
+                    "Multiple projects should throw an IOException.");
+
+    }
+
+    private void testModuleInterface(BIMProject[] lstProject, HashMap<Long,BIMMaterial> lstMaterial, HashMap<Long,BIMObject> lstObject, HashMap<Long,BIMObjectType> lstObjectType) throws IOException
     {
         final HashMap<Long,BIMMaterial> lstImpMaterial = new HashMap<>();
         final HashMap<Long,BIMObject> lstImpObject = new HashMap<>();
         final HashMap<Long,BIMObjectType> lstImpObjectType = new HashMap<>();
+        HashMap<Long,BIMProject> lstMapProject = new HashMap<>();
+        HashMap<Long,BIMProject> lstImpProject = new HashMap<>();
+        BIMProject ImpProject=null;
+
+        if(lstProject!=null && lstProject.length>0)
+            lstMapProject.put(lstProject[0].getId(),lstProject[0]);
 
         System.out.println("Initial Qty:");
         System.out.println("------------------------------");
+        System.out.println("Projects   : " +(exportOption.isProjectSupported()?(lstProject!=null?lstProject.length:0):"Unsupported"));
         System.out.println("Materials  : " +(lstMaterial!=null?lstMaterial.size():0));
         System.out.println("Objects    : " +(lstObject!=null?lstObject.size():0));
         System.out.println("ObjectType : " +(lstObjectType!=null?lstObjectType.size():0));
@@ -117,6 +138,11 @@ public abstract class InterfaceByExt
         try(baseExporter exp = exportOption.getExporter())
         {
             exp.init(filePath);
+            if(exportOption.isProjectSupported())
+                if(lstProject!=null)
+                    for(BIMProject i: lstProject)
+                        exp.ExportBIMProject(i);
+
             if(lstMaterial!=null)
                 for(HashMap.Entry<Long,BIMMaterial> i:lstMaterial.entrySet())
                     exp.ExportBIMMaterial(i.getValue());
@@ -134,16 +160,23 @@ public abstract class InterfaceByExt
         try(baseImporter imp = exportOption.getImporter())
         {
             imp.init(filePath);
+            ImpProject = imp.ReadBimProject();
+            if(ImpProject!=null)
+            {
+                lstImpProject.put(ImpProject.getId(),ImpProject);
+            }
             imp.ProcessAll(materialHandler, objectHandler, objectTypeHandler);
         }
 
         //Data validation
+        if(exportOption.isProjectSupported())assertBIMDataHashMap("Project Import",lstMapProject,lstImpProject);
         assertBIMDataHashMap("Material Import",lstMaterial,lstImpMaterial);
         assertBIMDataHashMap("Object Import",lstObject,lstImpObject);
         assertBIMDataHashMap("Object type Import",lstObjectType,lstImpObjectType);
 
         System.out.println("Final Qty:");
         System.out.println("------------------------------");
+        System.out.println("Projects   : " +(exportOption.isProjectSupported()?(lstImpProject!=null?lstImpProject.size():0):"Unsupported"));
         System.out.println("Materials  : " +(lstImpMaterial!=null?lstImpMaterial.size():0));
         System.out.println("Objects    : " +(lstImpObject!=null?lstImpObject.size():0));
         System.out.println("ObjectType : " +(lstImpObjectType!=null?lstImpObjectType.size():0));

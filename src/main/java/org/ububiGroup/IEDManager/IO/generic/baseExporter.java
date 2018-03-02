@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.ububiGroup.IEDManager.model.BIM.BIMMaterial;
 import org.ububiGroup.IEDManager.model.BIM.BIMObject;
 import org.ububiGroup.IEDManager.model.BIM.BIMObjectType;
+import org.ububiGroup.IEDManager.model.BIM.BIMProject;
 
 import java.io.*;
 
@@ -18,6 +19,8 @@ public abstract class baseExporter implements Closeable
     {
         this.filePath=filename;
     }
+
+    public abstract boolean ExportBIMProject(BIMProject bimProject) throws IOException;
     public abstract boolean ExportBIMMaterial(BIMMaterial bimMaterial);
     public abstract boolean ExportBIMObject(BIMObject bimObject);
     public abstract boolean ExportBIMObjectType(BIMObjectType bimObjectType);

@@ -88,6 +88,7 @@ public final class ZipFileUtil
 
         HashMap<String,File> extractedFiles = extractFiles(filePath);
 
+        //TODO automatize the HashMap
         for(Map.Entry<String,File> entry:extractedFiles.entrySet())
         {
             if(entry.getKey().startsWith(IEDFileType.IEDMaterial.toString()+"."))
@@ -101,6 +102,10 @@ public final class ZipFileUtil
             else if(entry.getKey().startsWith(IEDFileType.IEDObject.toString()+"."))
             {
                 extractedIEDFiles.put(IEDFileType.IEDObject,entry.getValue());
+            }
+            else if(entry.getKey().startsWith(IEDFileType.IEDProject.toString()+"."))
+            {
+                extractedIEDFiles.put(IEDFileType.IEDProject, entry.getValue());
             }
             else
                 entry.getValue().deleteOnExit();
